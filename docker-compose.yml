@@ -1,0 +1,34 @@
+version: '3.8'
+
+services:
+  postfix:
+    build: ./postfix
+    container_name: mail-postfix
+    restart: unless-stopped
+    ports:
+      - "25:25"
+    volumes:
+      - mail_data:/var/mail
+    networks:
+      - mail_network
+    depends_on:
+      - dovecot
+
+  dovecot:
+    build: ./dovecot
+    container_name: mail-dovecot
+    restart: unless-stopped
+    ports:
+      - "143:143"
+      - "110:110"
+    volumes:
+      - mail_data:/var/mail
+    networks:
+      - mail_network
+
+volumes:
+  mail_data:
+
+networks:
+  mail_network:
+    driver: bridge
