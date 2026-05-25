@@ -1,0 +1,7 @@
+myhostname = mail.localdomain
+mydomain = localdomain
+myorigin = $mydomain
+inet_interfaces = all
+inet_protocols = ipv4
+mydestination = $myhostname, localhost.$mydomain, localhost
+home_mailbox = Maildir/
