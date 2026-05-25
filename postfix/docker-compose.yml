@@ -1,0 +1,18 @@
+version: '3.8'
+
+services:
+  postfix:
+    build: .
+    container_name: postfix-test
+    restart: unless-stopped
+    volumes:
+      - mail_data:/var/mail
+    networks:
+      - mail_network
+
+volumes:
+  mail_data:
+
+networks:
+  mail_network:
+    driver: bridge
