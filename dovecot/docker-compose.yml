@@ -1,0 +1,21 @@
+version: '3.8'
+
+services:
+  dovecot:
+    build: .
+    container_name: dovecot-test
+    restart: unless-stopped
+    ports:
+      - "143:143"
+      - "110:110"
+    volumes:
+      - mail_buzones:/var/mail
+    networks:
+      - mail_network
+
+volumes:
+  mail_buzones:
+
+networks:
+  mail_network:
+    driver: bridge
